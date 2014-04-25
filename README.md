@@ -20,7 +20,7 @@ To install RV-Android:
 - Add rv-android/rv-monitor to the system PATH
 - Make sure to have the Android SDK, Java SE 7, and ant installed and in the PATH
 - Install AspectJ and add the binaries to the PATH
-- Copy aspectjtools.jar from <ASPECTJ_HOME>/lib to <ANT_HOME>/lib.  This allows for running ajc from ant scripts (often the ant libraries go in /usr/share/ant/lib/)
+- Copy aspectjtools.jar from ASPECTJ_HOME/lib to ANT_HOME/lib.  This allows for running ajc from ant scripts (often the ant libraries go in /usr/share/ant/lib/)
 
 Usage Instructions
 --------------
