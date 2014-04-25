@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="OSMTracker-custom" default="help">
+
+    <property name="lint.binary" value="${sdk.dir}/tools/lint" />
+    <taskdef resource="org/aspectj/tools/ant/taskdefs/aspectjTaskdefs.properties"/>
+
+    <target name="lint-old" >
+        <exec executable="${lint.binary}" failonerror="no" >
+            <arg value="--exitcode" />
+            <arg value="-Wall" />
+            <arg value="." />
+        </exec>
+    </target>
+
+    <target name="lint" >
+    </target>
+
+    <target name="-pre-build" depends="lint">
+
+      <echo message="Copying 'nb' resources to 'no' (See pull request #6)" />
+      <copy todir="${resource.absolute.dir}/values-no" overwrite="true">
+        <fileset dir="${resource.absolute.dir}/values-nb" />
+      </copy>
+      <copy todir="${resource.absolute.dir}/xml-no" overwrite="true">
+        <fileset dir="${resource.absolute.dir}/xml-nb" />
+      </copy>
+    </target>
+
+  <target name="-post-compile">
+    <path id="project.ajc.classpath">
+      <path refid="project.javac.classpath" />
+      <pathelement location="${sdk.dir}/platforms/android-16/android.jar" />
+                      <fileset dir="/home/phil/osmtracker-android/libs">
+                    <include name="*.jar"/>
+                    <include name="rvmonitorrt.jar"/>
+                </fileset>
+                <fileset dir="/home/phil/rv-monitor/lib">
+                    <include name="*.jar"/>
+                </fileset>
+    </path>
+    <echo> Weaving Aspects </echo>
+    <iajc srcdir="./aspects" 
+          inpath="./bin/classes/" 
+          destdir="./bin/classes/"
+          classpathref="project.ajc.classpath"
+          source="1.6" />
+  </target>
+
+</project>
