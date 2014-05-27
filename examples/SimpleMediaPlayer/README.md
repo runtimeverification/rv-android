@@ -1,6 +1,6 @@
 Building the Final, Instrumented Application (as provided)
 --------------
-osmtracker-android: from https://github.com/OSMtracker/android
+SimpleMediaPlayer: Simple RV-Monitor Example
 ==============
 
 Initial Setup
@@ -13,7 +13,7 @@ In this case, we provide the final generated monitoring libraries for the proper
 
 This means that you do not have to use RV-Monitor to generate them, and can simply build a final version of the application with "ant debug".
 
-Once the execution of "ant debug" has completed, a file named "OSMTracker-debug.apk" will be generated in the "bin" subfolder of the project.  Simply copy this file to your device and install as any other Android application APK (eg - copy it over with USB, use a file manager to click it)
+Once the execution of "ant debug" has completed, a file named "MonitoredApp-debug.apk" will be generated in the "bin" subfolder of the project.  Simply copy this file to your device and install as any other Android application APK (eg - copy it over with USB, use a file manager to click it)
 
 Building the Final, Uninstrumented Application (as provided)
 --------------
@@ -23,10 +23,8 @@ Building the Final, Instrumented Application (from scratch)
 --------------
 To generate from scratch the monitoring libraries via rv-monitor, run the following:
 - cd mop_properties
-- rv-monitor Closeable_MultipleClose.rvm
-- rv-monitor GetSystemService.rvm
-- cp Closeable_MultipleCloseRuntimeMonitor.java ../src/me/guillaumin/android/osmtracker/monitors/.
-- cp GetSystemServiceRuntimeMonitor.java ../src/me/guillaumin/android/osmtracker/monitors/.
+- rv-monitor SetOnPreparedListener.rvm
+- cp SetOnPreparedListenerRuntimeMonitor.java ../src/com/example/myapp/.
 - ant debug to build and install as above
 
 Also, feel free to browse and modify the instrumentation in the "aspects" directory, which defines the instrumentation for the monitoring libraries generated above.
