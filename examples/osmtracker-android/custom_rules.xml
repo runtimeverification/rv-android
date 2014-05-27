@@ -30,13 +30,6 @@
     <path id="project.ajc.classpath">
       <path refid="project.javac.classpath" />
       <pathelement location="${sdk.dir}/platforms/android-16/android.jar" />
-                      <fileset dir="/home/phil/osmtracker-android/libs">
-                    <include name="*.jar"/>
-                    <include name="rvmonitorrt.jar"/>
-                </fileset>
-                <fileset dir="/home/phil/rv-monitor/lib">
-                    <include name="*.jar"/>
-                </fileset>
     </path>
     <echo> Weaving Aspects </echo>
     <iajc srcdir="./aspects" 
