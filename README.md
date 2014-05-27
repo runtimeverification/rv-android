@@ -17,13 +17,20 @@ Installation and Preparation
 Currently RV-Android only officially supports Linux-based environments, though the instructions are similar for running on Windows.
 
 To install RV-Android:
-- Add rv-android/rv-monitor to the system PATH
-- Make sure to have the Android SDK, Java SE 7, and ant installed and in the PATH
-- Install AspectJ and add the binaries to the PATH
-- Copy aspectjtools.jar from ASPECTJ_HOME/lib to ANT_HOME/lib.  This allows for running ajc from ant scripts (often the ant libraries go in /usr/share/ant/lib/)
+- Install Java JRE 7, ant, AspectJ and git.  For Ubuntu 14.04: sudo apt-get install default-jre ant aspectj git
+- Make sure you have Java 7 installed by typing java -version.  You should see Java 1.7.x echoed as the version.  Also, running the "ant -version" and "ajc" commands should not yield errors at this stage.
+- Browse to your desired Android directory and download RV-Android.  git clone https://github.com/runtimeverification/rv-android
+- Copy aspectjtools.jar to the ant library directory (ASPECTJ_HOME/lib to ANT_HOME/lib).  On Ubuntu 14.04: sudo cp /usr/share/java/aspectjtools.jar /usr/share/ant/lib/.
+- Add rv-android/rv-monitor to your user's PATH.  For example, if RV-Android is in /home/myuser/rv-android use: vi ~/.bashrc and add
+PATH=$PATH:/home/user/rv-android/rv-monitor
+to the end of the file.  To test, open a new terminal and run rv-monitor, and a help screen should be displayed.
+
+Your installation process is now complete.
 
 Usage Instructions
 --------------
+To run either of the provided examples, please see the READMEs included in their respective directories.
+
 To include RV-Monitor in any Android app being built with the standard ant build process, there are several steps:
 - Copy libraries from rv-android/libs into your project's libs directory
 - Copy custom_rules.xml from rv-android into your project's root directory (to allow for AspectJ weaving during the Android build process)
