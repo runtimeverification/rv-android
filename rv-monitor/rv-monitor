@@ -8,7 +8,6 @@ printf '%s\n' "$(pwd -P)/$(basename -- "$0")"
 SRC_ROOT=`dirname "$SRC_ROOT"`
 
 # Move up into the actual source root directory
-SRC_ROOT="$SRC_ROOT/"
 
 MAINCLASS=com.runtimeverification.rvmonitor.java.rvj.Main
 
