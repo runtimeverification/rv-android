@@ -16,14 +16,6 @@ Closeable_MultipleClose(Closeable c) {
 
     @match {
         Log.v("RV-MONITOR", "Severe: Multiple close detected.  Recovering.");
-        if (__ACTIVITY != null) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(__ACTIVITY);
-            builder.setMessage("Closeable stream closed too many times!  Skipping second close.");
-            builder.setPositiveButton("Ok",new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int id) {}
-            });
-            builder.create().show();
-        }
         __SKIP;
     }
 

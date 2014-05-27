@@ -23,22 +23,22 @@ SetOnPreparedListener(){
   ltl : [](start => <*> setOnPreparedListener)
 
   @violation {
-            AlertDialog.Builder builder = new AlertDialog.Builder(__ACTIVITY);
-            builder.setMessage("Media player called without setting the prepared listener, setting listener....");
-            builder.setPositiveButton("Ok",new DialogInterface.OnClickListener() {
-              public void onClick(DialogInterface dialog, int id) {
-               // User clicked OK button
-                  //here we fix the code so that start is instead called
-    //by the handler
-    toFix.setOnPreparedListener(new OnPreparedListener(){
-       @Override
-       public void onPrepared(MediaPlayer mp){
-         mp.start();
-       }
-    });
-              }
-            });
-       builder.create().show();
-    __SKIP;
+      AlertDialog.Builder builder = new AlertDialog.Builder(__ACTIVITY);
+      builder.setMessage("Media player called without setting the prepared listener, setting listener....");
+      builder.setPositiveButton("Ok",new DialogInterface.OnClickListener() {
+          public void onClick(DialogInterface dialog, int id) {
+              // User clicked OK button
+              //here we fix the code so that start is instead called
+              //by the handler
+              toFix.setOnPreparedListener(new OnPreparedListener(){
+                  @Override
+                  public void onPrepared(MediaPlayer mp){
+                      mp.start();
+                  }
+              });
+          }
+      });
+      builder.create().show();
+      __SKIP;
   }
 }

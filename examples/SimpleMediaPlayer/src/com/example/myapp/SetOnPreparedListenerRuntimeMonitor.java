@@ -94,8 +94,8 @@ class SetOnPreparedListenerMonitor extends com.runtimeverification.rvmonitor.jav
 
 	boolean skipEvent = false;
 
-	static final int Prop_1_transition_setOnPreparedListener[] = {1, 1, 3, 3};;
-	static final int Prop_1_transition_start[] = {2, 1, 3, 3};;
+	static final int Prop_1_transition_setOnPreparedListener[] = {2, 3, 2, 3};;
+	static final int Prop_1_transition_start[] = {1, 3, 2, 3};;
 
 	volatile boolean Prop_1_Category_violation = false;
 
@@ -139,7 +139,7 @@ class SetOnPreparedListenerMonitor extends com.runtimeverification.rvmonitor.jav
 	final void Prop_1_event_setOnPreparedListener() {
 
 		int nextstate = this.handleEvent(0, Prop_1_transition_setOnPreparedListener) ;
-		this.Prop_1_Category_violation = nextstate == 2;
+		this.Prop_1_Category_violation = nextstate == 1;
 
 	}
 
@@ -149,7 +149,7 @@ class SetOnPreparedListenerMonitor extends com.runtimeverification.rvmonitor.jav
 		}
 
 		int nextstate = this.handleEvent(1, Prop_1_transition_start) ;
-		this.Prop_1_Category_violation = nextstate == 2;
+		this.Prop_1_Category_violation = nextstate == 1;
 
 	}
 

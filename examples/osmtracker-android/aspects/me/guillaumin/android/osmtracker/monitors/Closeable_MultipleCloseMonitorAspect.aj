@@ -15,10 +15,6 @@ import android.database.CursorWrapper;
 public aspect Closeable_MultipleCloseMonitorAspect {
     public Closeable_MultipleCloseMonitorAspect() {}
 
-    before (Activity a): (execution(void Activity+.onCreate(..) ) && this(a)) {
-      Closeable_MultipleCloseRuntimeMonitor.onCreateActivity(a);
-    }
-
     void around (Closeable c): (call(* Closeable+.close(..)) && target(c)) {
       Closeable_MultipleCloseRuntimeMonitor.closeEvent(c);
       if (!Closeable_MultipleCloseRuntimeMonitor.skipEvent) {
