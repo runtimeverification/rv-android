@@ -17,15 +17,20 @@ Installation and Preparation
 Currently RV-Android only officially supports Linux-based environments, though the instructions are similar for running on Windows.
 
 To install RV-Android:
-- Install Java JRE 7, ant, AspectJ and git.  For Ubuntu 14.04: sudo apt-get install default-jre ant aspectj git
+- Install Java JRE 7, ant, AspectJ and git.  For Ubuntu 14.04: sudo apt-get install default-jre default-jdk ant aspectj git
 - Make sure you have Java 7 installed by typing java -version.  You should see Java 1.7.x echoed as the version.  Also, running the "ant -version" and "ajc" commands should not yield errors at this stage.
 - Browse to your desired Android directory and download RV-Android.  git clone https://github.com/runtimeverification/rv-android
 - Copy aspectjtools.jar to the ant library directory (ASPECTJ_HOME/lib to ANT_HOME/lib).  On Ubuntu 14.04: sudo cp /usr/share/java/aspectjtools.jar /usr/share/ant/lib/.
 - Add rv-android/rv-monitor to your user's PATH.  For example, if RV-Android is in /home/myuser/rv-android use: vi ~/.bashrc and add
 PATH=$PATH:/home/user/rv-android/rv-monitor
 to the end of the file.  To test, open a new terminal and run rv-monitor, and a help screen should be displayed.
+- If you have a 64 bit Linux install, install either ia32-libs (deprecated) or lib32z1 and lib32stdc++6 (required for Android SDK).  For Ubuntu 14.04: sudo apt-get install lib32stdc++6 lib32z1
+- Download the Android SDK from http://developer.android.com/sdk/index.html for your system and extract it to a known directory.
+- Navigate to the sdk/tools subfolder of your SDK install and run sudo ./android.  This will open a GUI from which to install additional API platforms.  Our examples use Android 4.1.2 (API 16), so check the box next to the top level "Android 4.1.2 (API 16)" folder and press the install button, accepting all licenses.  At the end of this step, your sdk/platforms subfolder of your adt install should contain a "android-16" directory.
 
-Your installation process is now complete.
+Your installation process is now complete and you are ready to create your own monitored project or run our examples!
+
+For any issues or problems installing RV-Android, please file a GitHub issue and we will provide support for your system.  It is also likely that RV-Android will work with other versions of the Android SDK, but we have not tested this.  If you encounter any related bugs, file a Github issue.
 
 Usage Instructions
 --------------
@@ -40,13 +45,3 @@ To include RV-Monitor in any Android app being built with the standard ant build
 - Copy the properties to their relevant location in the source tree manually (this step will eventually be automated)
 - Insert instrumentation/AOP weaving instructions (either auto-generated if using MOP or manually generated with standard RV Monitor files) into the aspects folder
 - Run ant debug to build your application
-
-Examples
---------------
-Two examples are provided that illustrate two of the many possible formalisms supported by RV-Monitor: past-time linear temporal logic and extended regular expressions.
-
-One example is a trivial example intended to illustrate the recovery/enforcement provided by the RV-Monitor Android runtime.  The other example, OSMTracker is an OSS app slightly modified to illustrate a sequence of potentially dangerous API calls.  The original project can be found at https://github.com/nguillaumin/osmtracker-android, and the full source and license is included herein, in which two properties are monitored.
-
-To run each of the examples, first modify the local.properties file in the example's subdirectory to point to your Android SDK, which must have Android SDK 16 installed through the manager.
-
-Then simply run ant debug to generate the relevant Android binaries.
