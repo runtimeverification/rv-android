@@ -1,0 +1,20 @@
+import java.io.*;
+import android.util.Log;
+import android.media.MediaPlayer.OnPreparedListener;
+import android.app.AlertDialog;
+import android.app.Activity;
+import android.content.DialogInterface;
+
+Closeable_MultipleClose(Closeable c) {
+    event close(Closeable c){
+        Log.v("RV-MONITOR", "Closeable stream closed! Hashcode " + c.hashCode() + ", class: " + c.getClass());
+    }
+
+    ere: close close+
+
+    @match {
+        Log.v("RV-MONITOR", "Severe: Multiple close detected.  Recovering.");
+        __SKIP;
+    }
+
+}

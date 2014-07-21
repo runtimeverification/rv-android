@@ -1,0 +1,39 @@
+import java.io.*;
+import android.util.Log;
+import android.media.MediaPlayer.OnPreparedListener;
+import android.app.AlertDialog;
+import android.app.Activity;
+import android.content.DialogInterface;
+
+GetSystemService(Integer x) {
+    event getLocationService() {
+        Log.v("RV-MONITOR", "App is grabbing location service!");
+    }
+    event getTextService() {
+        Log.v("RV-MONITOR", "App is grabbing SMS service!");
+    }
+    event getTelephonyService() {
+        Log.v("RV-MONITOR", "App is grabbing telephony service!");
+    }
+    event getNotificationService() {
+        Log.v("RV-MONITOR", "App is grabbing notification service!");
+    }
+    event getStorageService() {
+        Log.v("RV-MONITOR", "App is grabbing storage service!");
+    }
+
+    ere: (getLocationService | getTextService | getTelephonyService)+ getStorageService
+
+    @match {
+        Log.v("RV-MONITOR", "Possible data exfiltration risk! Storage service accessed after telephony, location, or text service.");
+        if (__ACTIVITY != null) {
+          AlertDialog.Builder builder = new AlertDialog.Builder(__ACTIVITY);
+          builder.setMessage("Possible data exfiltration event: storage service accessed by application after telephony, SMS, or location.");
+            builder.setPositiveButton("Ok",new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {}
+            });
+            builder.create().show();
+        }
+    }
+
+}
