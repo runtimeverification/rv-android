@@ -22,7 +22,8 @@ RV-Android comes in three flavors, and are represented by the directories:
   arbitrary, binary applications to be instrumented with any monitors
   and aspects provided.  Instrumentation is currently separate from 
   library generation, so familiarity with both RV-Monitor and AspectJ
-  is important.
+  is important.  **This is the version we recommend if you are interested
+  in exploring RV-Android.**
 
 
 - beta/gui: An unfinished, not yet working Android app allowing for on-device
